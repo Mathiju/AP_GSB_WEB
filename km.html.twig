@@ -32,6 +32,10 @@
             width: 150px;
             font-weight: bold;
             font-size: 1.2rem;
+            border-radius: 20px;
+        }
+        .btn-custom-ajouter:hover {
+            background-color: rgb(42, 139, 82)/* Rouge */
         }
 
         .btn-custom-modifier {
@@ -43,6 +47,10 @@
             width: 150px;
             font-weight: bold;
             font-size: 1.2rem;
+            border-radius: 20px;
+        }
+        .btn-custom-modifier:hover {
+            background-color: rgb(42, 139, 134)/* Rouge */
         }
 
         .btn-custom-supprimer {
@@ -54,6 +62,25 @@
             width: 150px;
             font-weight: bold;
             font-size: 1.2rem;
+            border-radius: 20px;
+        }
+        .btn-custom-supprimer:hover {
+            background-color: rgb(139, 42, 42)/* Rouge */
+        }
+
+        .btn-custom-retour, .btn-custom-logout {
+            background-color: #6c757d; /* Rouge */
+            color: white;
+            border: none;
+            color: rgb(255, 255, 255);
+            height: 50px;
+            width: 180px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 20px;
+        }
+        .btn-custom-retour:hover, .btn-custom-logout:hover {
+            background-color:rgb(148, 157, 165); /* Rouge */
         }
 
     </style>
@@ -62,9 +89,9 @@
 
     <div class="container text-white">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-secondary" a href="#" id="retour">Retour</button>
+            <button class="btn-custom-retour" a href="#" id="retour">Retour</button>
             <h3>Frais de kilomètres</h3>
-            <button class="btn btn-secondary" a href="#" id="logout">Se déconnecter</button>
+            <button class="btn-custom-logout" a href="#" id="logout">Se déconnecter</button>
         </div>
 
         <div class="mt-3">
@@ -74,7 +101,7 @@
         </div>
 
         <div class="mt-3 d-flex justify-content-center gap-3">
-            <button class="btn-custom-ajouter">Ajouter</button>
+            <button class="btn-custom-ajouter" a href="#" id="add">Ajouter</button>
             <button class="btn-custom-modifier">Modifier</button>
             <button class="btn-custom-supprimer">Supprimer</button>
         </div>
@@ -90,6 +117,11 @@
                 event.preventDefault(); // Empêche le comportement par défaut du lien
                 // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
                 window.location.href = 'login'; // Redirige vers la route de login
+            });
+            document.getElementById('add').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
+                window.location.href = 'add'; // Redirige vers la route de login
             });
         </script>
 </body>
