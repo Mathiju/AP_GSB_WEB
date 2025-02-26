@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SigninController!{% endblock %}
+
+{% block body %}
+        <h1>Sign In</h1>
+        <form id="signin-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prenom:</label>
+                <input type="text" id="prenom" name="prenom" required>
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+
+    <script type="module">
+    import { createUser } from '{{ asset('firebase/firebase.js') }}';
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('signin-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            try {
+                await createUser(email, password, nom, prenom);
+                alert('User logged in successfully');
+            } catch (error) {
+                console.error('Error logging in user:', error);
+                alert('Failed to log in user');
+            }
+        });
+    });
+</script>
+{% endblock %}
