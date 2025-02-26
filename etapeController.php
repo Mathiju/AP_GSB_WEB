@@ -6,14 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class kmController extends AbstractController
+class etapeController extends AbstractController
 {
     // Route pour afficher la page des frais kilométriques
-    #[Route('/km', name: 'km')]
+    #[Route('/etape', name: 'etape')]
     public function index(): Response
     {
-        return $this->render('/page/km.html.twig', [
-            'controller_name' => 'KmController',
+        return $this->render('/page/etape.html.twig', [
+            'controller_name' => 'etapeController',
         ]);
     }
 
