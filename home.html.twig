@@ -1,0 +1,125 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <style>
+        /* Styles généraux */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75');
+            background-size: cover;
+            color: #fff;
+        }
+
+
+        /* En-tête */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #444;
+            padding: 10px;
+        }
+
+
+        header .buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+
+        header button {
+            background-color: #ccc;
+            border: none;
+            padding: 10px 15px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+
+        header .logout {
+            margin-left: auto;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        /* Boîte centrale */
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+
+        .box {
+            width: 400px;
+            height: 250px;
+            background-color: #fff;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+
+        /* Pied de page */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="buttons">
+            <button>Frais de KM</button>
+            <button>Frais de repas</button>
+            <button>Frais d'hébergement</button>
+            <button>Frais des étapes</button>
+            <button>Autres frais</button>
+        </div>
+        <a href="#" id="logout" class="logout">Se déconnecter</a>
+
+
+        <script>
+            document.getElementById('logout').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
+                window.location.href = 'login'; // Redirige vers la route de login
+            });
+        </script>
+    </header>
+
+
+    <!-- Contenu central -->
+    <div class="content">
+        <div class="box">
+            (Liste des derniers frais)
+        </div>
+    </div>
+
+
+    <!-- Pied de page -->
+    <footer>
+        Connecter en tant que
+    </footer>
+</body>
+</html>
+
+
