@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,33 +20,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #444;
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px; /* Augmente l'espace intérieur */
+            height: 70px;
         }
 
 
         header .buttons {
             display: flex;
-            gap: 5px;
+            gap: 50px;
+            height: 70px;
         }
 
 
         header button {
-            background-color: #ccc;
+            background-color: #6c757d; /* Gris foncé */
+            border-color: #6c757d; /* Bordure gris foncé */
             border: none;
             padding: 10px 15px;
-            color: #000;
+            color:rgb(255, 255, 255);
             cursor: pointer;
             font-weight: bold;
+            font-size: 1.2rem; /* Agrandit le texte */
         }
 
 
         header .logout {
-            margin-left: auto;
-            color: #fff;
-            text-decoration: none;
+            background-color: #6c757d; /* Gris foncé */
+            border-color: #6c757d; /* Bordure gris foncé */
+            border: none;
+            padding: 10px 15px;
+            color:rgb(255, 255, 255);
+            cursor: pointer;
             font-weight: bold;
-        }
+            font-size: 1.2rem; /* Agrandit le texte */
+            text-decoration: none;
+        } 
 
 
         /* Boîte centrale */
@@ -88,7 +94,7 @@
 <body>
     <header>
         <div class="buttons">
-            <button>Frais de KM</button>
+            <button a href="#" id="km" class="km">Frais de KM</button>
             <button>Frais de repas</button>
             <button>Frais d'hébergement</button>
             <button>Frais des étapes</button>
@@ -102,6 +108,14 @@
                 event.preventDefault(); // Empêche le comportement par défaut du lien
                 // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
                 window.location.href = 'login'; // Redirige vers la route de login
+            });
+        </script>
+
+        <script>
+            document.getElementById('km').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
+                window.location.href = 'km'; // Redirige vers la route de login
             });
         </script>
     </header>
@@ -121,5 +135,3 @@
     </footer>
 </body>
 </html>
-
-
