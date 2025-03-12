@@ -22,8 +22,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px; /* Augmente l'espace intérieur */
+            background: linear-gradient(to right, rgba(18, 120, 236, 0.31), rgba(182, 39, 99, 0.51));    padding: 20px; /* Augmente l'espace intérieur */
             height: 50px;
         }
 
@@ -36,7 +35,7 @@
 
 
         header button {
-            background-color: #6c757d; /* Gris foncé */
+            background-color: rgba(111, 112, 177, 0.48); /* Gris foncé */
             border-color: #6c757d; /* Bordure gris foncé */
             border: none;
             padding: 10px 15px;
@@ -47,12 +46,12 @@
             border-radius: 20px;
         }
         header button:hover, .logout:hover {
-            background-color:rgb(148, 157, 165); /* Rouge */
+            background-color:rgba(177, 178, 233, 0.48); /* Rouge */
         }
 
 
         header .logout {
-            background-color: #6c757d; /* Gris foncé */
+            background-color: rgba(111, 112, 177, 0.48); /* Gris foncé */
             border-color: #6c757d; /* Bordure gris foncé */
             border: none;
             padding: 10px 15px;
@@ -64,26 +63,32 @@
             border-radius: 20px;
         } 
 
-
-        /* Boîte centrale */
-        .content {
-            display: flex;
+        .container {
             justify-content: center;
             align-items: center;
-            height: 70vh;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 20px auto; /* Centrer horizontalement */
+            width: 1000px; /* Ajuste la largeur au contenu */
+            max-width: 90%; /* Limite la largeur maximale */
+            
         }
 
-
         .box {
-            width: 400px;
-            height: 250px;
-            background-color: #fff;
-            color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-            font-weight: bold;
+        width: 1000px;
+        height: 250px;
+        background-color:rgba(255, 255, 255, 0.42);
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 20px; /* Ajoute de l'espace à l'intérieur de la boîte */
+        box-sizing: border-box;
+        border-radius: 20px;
         }
 
         table {
@@ -96,10 +101,11 @@
             border: 1px solid #000;
             padding: 8px;
             text-align: center;
+            background-color: #f2f2f2;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color:rgb(192, 192, 192);
         }
 
         /* Pied de page */
@@ -164,23 +170,27 @@
         </script>
     </header>
 
-
      <!-- Contenu central -->
-   <div class="content">
-        <div class="box">
-            <h3>Liste des derniers frais</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Type de frais</th>
-                        <th>Valeur (€)</th>
-                    </tr>
-                </thead>
-                <tbody id="fraisTableBody">
-                    <!-- Les frais seront ajoutés ici dynamiquement -->
-                </tbody>
-            </table>
+    <div class="container text-white">
+    <div class="d-flex justify-content-between">
+        <h3>Liste des derniers frais</h3>
+    </div>
+
+        <div class="content">
+            <div class="box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type de frais</th>
+                            <th>Valeur (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fraisTableBody">
+                        <!-- Les frais seront ajoutés ici dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -235,3 +245,4 @@
     </footer>
 </body>
 </html> 
+
