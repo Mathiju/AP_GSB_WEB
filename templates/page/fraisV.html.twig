@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frais Validés</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, rgba(18, 120, 236, 0.31), rgba(182, 39, 99, 0.51));
+            padding: 20px;
+            height: 50px;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: rgb(192, 192, 192);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="homeC">🏠 Retour à l'accueil</a>
+    </header>
+    <script>
+    document.getElementById('retour').addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+        // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
+        window.location.href = 'homeC';
+        });
+    </script>
+    <h2 style="text-align: center;">Liste des Frais Validés</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Date</th>
+                <th>Type de frais</th>
+                <th>Valeur (€)</th>
+            </tr>
+        </thead>
+        <tbody id="validesTableBody"></tbody>
+    </table>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB24J4yHKRpk59CG-mnLUzJzizIuSo64-Q",
+            authDomain: "ap-gsp.firebaseapp.com",
+            projectId: "ap-gsp",
+            storageBucket: "ap-gsp.firebasestorage.app",
+            messagingSenderId: "817436331010",
+            appId: "1:817436331010:web:b4f49704fd32d367bf6b1b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function afficherFraisValides() {
+            const fraisCollection = collection(db, "frais");
+            const fraisSnapshot = await getDocs(fraisCollection);
+            const tableBody = document.getElementById("validesTableBody");
+
+            tableBody.innerHTML = "";
+
+            fraisSnapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                if (data.statut === "Validé") {
+                    const row = `<tr>
+                        <td>${data.user}</td>
+                        <td>${data.date}</td>
+                        <td>${data.type_frais}</td>
+                        <td>${data.valeur}€</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                }
+            });
+        }
+
+        window.onload = afficherFraisValides;
+    </script>
+</body>
+</html>

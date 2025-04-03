@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <style>
+        /* Styles généraux */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75');
+            background-size: cover;
+            color: #fff;
+        }
+
+        /* En-tête */
+        header {
+            display: flex;
+            justify-content: space-between; /* Aligner l'image à gauche et le bouton à droite */
+            align-items: center;
+            background: linear-gradient(to right, rgba(18, 120, 236, 0.31), rgba(182, 39, 99, 0.51));
+            padding: 20px;
+            height: 50px;
+        }
+
+        header .logo {
+            width: 50px; /* Ajuste la taille de l'image */
+            height: auto;
+            margin-right: 20px; /* Espace entre l'image et les autres éléments */
+        }
+
+        header .buttons {
+            display: flex;
+            gap: 50px;
+            height: 50px;
+        }
+
+        header button {
+            background-color: rgba(111, 112, 177, 0.48); /* Gris foncé */
+            border-color: #6c757d; /* Bordure gris foncé */
+            border: none;
+            padding: 10px 15px;
+            color:rgb(255, 255, 255);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem; /* Agrandit le texte */
+            border-radius: 20px;
+        }
+
+        header button:hover, .logout:hover {
+            background-color:rgba(177, 178, 233, 0.48); /* Rouge */
+        }
+
+        header .logout {
+            background-color: rgba(111, 112, 177, 0.48); /* Gris foncé */
+            border-color: #6c757d;
+            border: none;
+            padding: 10px 15px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+
+        .container {
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            background: rgba(50, 50, 50, 0.2);
+            margin: 100px auto; /* Augmente la marge supérieure pour le placer encore plus bas */
+            width: 1000px; /* Ajuste la largeur au contenu */
+            max-width: 90%; /* Limite la largeur maximale */
+            backdrop-filter: blur(10px); /* Ajoute un effet de flou */
+            color: black;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: rgb(192, 192, 192);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+        .btn-approve {
+            background-color: rgb(93, 161, 101);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .btn-approve:hover {
+            background-color: rgb(134, 209, 143);
+        }
+        .btn-reject:hover {
+            background-color: rgb(196, 122, 122);
+        }
+        .btn-reject {
+            background-color: rgb(161, 93, 93);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Logo positionné à gauche -->
+        <img src="https://img.freepik.com/vecteurs-libre/ordinateur-bureau-vconcept-illustration_114360-12153.jpg?ga=GA1.1.840802286.1729083279&semt=ais_hybrid" alt="Logo" class="logo" style="width: 80px; height: auto; border-radius: 50%;"> 
+        <div class="buttons">
+            <button a href="#" id="fraisV" class="fraisV">Frais Validés</button>
+            <button a href="#" id="fraisR" class="fraisR">Frais Refuser</button>
+        </div>
+        <a href="#" id="logout" class="logout">Se déconnecter</a>
+    </header>
+    <script>
+    document.getElementById('fraisV').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                window.location.href = 'fraisV'; // Redirige vers la route de login
+            });
+
+    document.getElementById('fraisR').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                window.location.href = 'fraisR'; // Redirige vers la route de login
+            });
+    document.getElementById('logout').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                window.location.href = 'login'; // Redirige vers la route de login
+            });
+    </script>
+    <!-- Contenu central --><br>
+    <div style="color: white; text-align: center;">
+        <h3>Bienvenue sur notre site de gestion des frais !</h3>
+        <p>En tant que comptable vous devez validé ou non les frais de nos salariés</p>
+        <p>Ensuite n'oublier pas de vous déconnecter en cliquant sur le bouton "Se déconnecter"</p>
+    </div>
+
+    <!-- Contenu central -->
+    <div class="container text-white">
+        <div class="d-flex justify-content-between">
+            <h3 style="color: white">Liste des derniers frais</h3>
+        </div>
+
+        <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Utilisateur</th>
+                            <th>Date <button id="sortDate" style="cursor:pointer; background:none; border:none; color:white;">🔽</button></th>
+                            <th>Type de frais 
+                                <select id="filterType">
+                                    <option value="all">Tous</option>
+                                </select>
+                            </th>
+                            <th>Valeur (€)</th>
+                            <th>Statut</th>
+                            <th>Validation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fraisTableBody">
+                        <!-- Les frais seront ajoutés ici dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+    <!-- Importation du fichier Firebase -->
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, updateDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB24J4yHKRpk59CG-mnLUzJzizIuSo64-Q",
+        authDomain: "ap-gsp.firebaseapp.com",
+        projectId: "ap-gsp",
+        storageBucket: "ap-gsp.firebasestorage.app",
+        messagingSenderId: "817436331010",
+        appId: "1:817436331010:web:b4f49704fd32d367bf6b1b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let sortAsc = true; // Variable pour alterner le tri
+    let fraisArray = []; // Stocke les frais récupérés
+
+    function trierParDate(fraisArray) {
+        return fraisArray.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return sortAsc ? dateA - dateB : dateB - dateA;
+        });
+    }
+
+    async function afficherFrais() {
+        const fraisCollection = collection(db, "frais");
+        const fraisSnapshot = await getDocs(fraisCollection);
+        const tableBody = document.getElementById("fraisTableBody");
+        const filterType = document.getElementById("filterType").value; // Récupérer la valeur du filtre
+
+        tableBody.innerHTML = ""; // Vider le tableau
+        fraisArray = []; // Réinitialiser les frais
+
+        fraisSnapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            if (!data.statut || data.statut === "En attente") {
+                fraisArray.push({ id: docSnap.id, ...data });
+            }
+        });
+
+        // Trier les frais par date
+        fraisArray = trierParDate(fraisArray);
+
+        // Filtrer les frais si un type est sélectionné
+        let fraisFiltres = fraisArray.filter(frais => filterType === "all" || frais.type_frais === filterType);
+
+        // **NOUVEAU** : Placer le type sélectionné en haut s'il n'est pas "Tous"
+        if (filterType !== "all") {
+            fraisFiltres.sort((a, b) => (a.type_frais === filterType ? -1 : 1));
+        }
+
+        // Remplir le tableau avec les frais filtrés
+        if (fraisFiltres.length === 0) {
+            tableBody.innerHTML = "<tr><td colspan='6'>Aucun frais trouvé.</td></tr>";
+            return;
+        }
+
+        fraisFiltres.forEach((data) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${data.user}</td>
+                <td>${data.date}</td>
+                <td>${data.type_frais}</td>
+                <td>${data.valeur}€</td>
+                <td id="statut-${data.id}">En attente</td>
+                <td>
+                    <button class="btn-approve" data-id="${data.id}">Approuver</button>
+                    <button class="btn-reject" data-id="${data.id}">Rejeter</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Ajouter les événements pour les boutons
+        document.querySelectorAll(".btn-approve").forEach(button => {
+            button.addEventListener("click", async (event) => {
+                const id = event.target.getAttribute("data-id");
+                await updateDoc(doc(db, "frais", id), { statut: "Validé" });
+                event.target.closest("tr").remove(); // Supprimer la ligne après validation
+            });
+        });
+
+        document.querySelectorAll(".btn-reject").forEach(button => {
+            button.addEventListener("click", async (event) => {
+                const id = event.target.getAttribute("data-id");
+                const justification = prompt("Veuillez entrer un motif de refus :");
+                if (justification) {
+                    await updateDoc(doc(db, "frais", id), { statut: "Refusé", justification });
+                    event.target.closest("tr").remove(); // Supprimer la ligne après refus
+                }
+            });
+        });
+
+        // Mettre à jour le filtre des types de frais
+        mettreAJourTypesFrais();
+    }
+
+    // Événement pour trier la date et changer l’icône de tri
+    document.getElementById("sortDate").addEventListener("click", function() {
+        sortAsc = !sortAsc; // Inverser l'ordre de tri
+        this.innerHTML = sortAsc ? "🔽" : "🔼"; // Mettre à jour l'icône
+        afficherFrais(); // Recharger les frais triés
+    });
+
+    // Mettre à jour le filtre des types de frais
+    function mettreAJourTypesFrais() {
+    const select = document.getElementById("filterType");
+    const typesExistants = new Set(fraisArray.map(frais => frais.type_frais));
+
+    const currentSelection = select.value; // Sauvegarde la sélection actuelle
+
+    // Vérifier si l'option "Tous" est déjà présente, sinon l'ajouter
+    if (![...select.options].some(option => option.value === "all")) {
+        const optionTous = document.createElement("option");
+        optionTous.value = "all";
+        optionTous.textContent = "Tous";
+        select.prepend(optionTous);
+    }
+
+    // Ajouter uniquement les nouvelles options manquantes
+    typesExistants.forEach(type => {
+        if (![...select.options].some(option => option.value === type)) {
+            const option = document.createElement("option");
+            option.value = type;
+            option.textContent = type;
+            select.appendChild(option);
+        }
+    });
+
+    // Restaurer la sélection précédente si elle existe
+    if ([...select.options].some(option => option.value === currentSelection)) {
+        select.value = currentSelection;
+    } else {
+        select.value = "all"; // Si l'option sélectionnée n'existe plus, revenir à "Tous"
+    }
+}
+
+    // Filtrer les frais en fonction du type sélectionné
+    document.getElementById("filterType").addEventListener("change", function() {
+        afficherFrais();
+    });
+
+    window.onload = afficherFrais;
+
+</script>
+
+</body>
+</html>

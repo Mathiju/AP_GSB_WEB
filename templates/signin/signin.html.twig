@@ -3,27 +3,108 @@
 {% block title %}Hello SigninController!{% endblock %}
 
 {% block body %}
+<!DOCTYPE html>
+<html lang="en">    
+<header>
+        <img src="https://img.freepik.com/vecteurs-libre/ordinateur-bureau-vconcept-illustration_114360-12153.jpg?ga=GA1.1.840802286.1729083279&semt=ais_hybrid" alt="Logo" class="logo" style="width: 80px; height: auto; border-radius: 50%;"> <!-- Ajoutez votre image ici -->
+        <a href="#" id="logout" class="logout">Se déconnecter</a>
+        <button class="logout" id="retour">Retour</button>
+        <script>
+            document.getElementById('logout').addEventListener('click', function(event) {
+                event.preventDefault(); // Empêche le comportement par défaut du lien
+                window.location.href = 'login'; // Redirige vers la route de login
+            });
+        </script>
+    </header>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75');
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+          /* En-tête */
+        header {
+            display: flex;
+            justify-content: space-between; /* Aligner l'image à gauche et le bouton à droite */
+            align-items: center;
+            background: linear-gradient(to right, rgba(18, 120, 236, 0.31), rgba(182, 39, 99, 0.51));
+            padding: 20px; /* Augmente l'espace intérieur */
+            height: 50px;
+        }
+
+        header .logo {
+            width: 50px; /* Ajuste la taille de l'image */
+            height: auto;
+            margin-right: 20px; /* Espace entre l'image et les autres éléments */
+        }
+
+        .logout:hover {
+            background-color:rgba(177, 178, 233, 0.48); /* Rouge */
+        }
+
+        header .logout {
+            background-color: rgba(111, 112, 177, 0.48); /* Gris foncé */
+            border-color: #6c757d; /* Bordure gris foncé */
+            border: none;
+            padding: 10px 15px;
+            color:rgb(255, 255, 255);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem; /* Agrandit le texte */
+            text-decoration: none;
+            border-radius: 20px;
+        }
+       .signin-container {
+            display: flex;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 1000px;
+            height: 600px;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px auto;
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        </style>
+        <div class="signin-container">
         <h1>Sign In</h1>
         <form id="signin-form">
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email">Email :</label>
                 <input type="email" id="email" name="email" required>
-            </div>
+            </div><br>
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password">Password :</label>
                 <input type="password" id="password" name="password" required>
-            </div>
+            </div><br>
             <div class="form-group">
-                <label for="nom">Nom:</label>
+                <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" required>
-            </div>
+            </div><br>
             <div class="form-group">
-                <label for="prenom">Prenom:</label>
+                <label for="prenom">Prenom :</label>
                 <input type="text" id="prenom" name="prenom" required>
-            </div>
-            <button type="submit">Sign In</button>
+            </div><br>
+            <div class="form-group">
+                <label for="role">Role :</label>
+                <select id="role" name="role" required>
+                    <option value="admin">Admin</option>
+                    <option value="compta">Comptable</option>
+                    <option value="user">User</option>
+                </select>
+            </div><br>
+            <button type="submit" id="">Sign In</button>
         </form>
-
+    </div>
     <script type="module">
     import { createUser } from '{{ asset('firebase/firebase.js') }}';
     document.addEventListener('DOMContentLoaded', function() {
@@ -33,8 +114,13 @@
             const password = document.getElementById('password').value;
             const nom = document.getElementById('nom').value;
             const prenom = document.getElementById('prenom').value;
+            const role = document.getElementById('role').value;
+              if (password.length < 6) {
+                alert('Le mot de passe doit contenir au moins 6 caractères.');
+              return;
+            }
             try {
-                await createUser(email, password, nom, prenom);
+                await createUser(email, password, nom, prenom, role);
                 alert('User logged in successfully');
             } catch (error) {
                 console.error('Error logging in user:', error);
@@ -42,5 +128,10 @@
             }
         });
     });
+    document.getElementById('retour').addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+        // Ajoutez ici le code pour déconnecter l'utilisateur si nécessaire
+        window.location.href = 'homeA'; // Redirige vers la route de login
+        });
 </script>
 {% endblock %}

@@ -168,70 +168,46 @@
         <div class="login-form">
 
         <div class="login-form">
-            <div class="switch-buttons">
-                <button class="active" id="signInBtn">Se connecter</button>
-                <button id="signUpBtn">Se connecter en administrateur</button>
-            </div>
-
             <div class="form-container">
-                <!-- Formulaire de connexion -->
                 <form id="loginForm" class="active">
                     <h2>Se connecter</h2>
-                    <br><br><label for="email">Email:</label>
-                    <input type="text" id="email" name="email" placeholder="Entrer votre email" required>
-
-                    <br><br><label for="password">Mot de passe:</label>
+                        <br><br>
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" placeholder="Entrer votre email" required>
+                        <br><br>
+                    <label for="password">Mot de passe :</label>
                     <input type="password" id="password" name="password" placeholder="Entrer votre mot de passe" required>
-
-                    <br><br><br><br><button type="submit">Se connecter
+                    <br><br><br><br>
+                    <button type="submit">Se connecter</button>
                 </form>
-       <script type="module">
-    import { logAsUser } from '{{ asset('firebase/firebase.js') }}';   
+ <script type="module">
+    import { logAsUser } from '{{ asset('firebase/firebase.js') }}';
 
-    // Écoute l'événement de soumission du formulaire
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
-        event.preventDefault();  // Empêche la soumission par défaut du formulaire
+        event.preventDefault();  // Empêche le rechargement de la page
 
-        // Récupérer les valeurs des champs
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
 
-        // Vérification de la validité des champs
         if (!email || !password) {
             alert("Veuillez entrer un email et un mot de passe valides.");
             return;
         }
 
         try {
-            // Appel à la fonction `logAsUser` pour connecter l'utilisateur avec Firebase
+            // 🔥 Connexion et récupération du rôle
             await logAsUser(email, password);
-
-            // Si la connexion est réussie, rediriger l'utilisateur vers la page "home"
-            window.location.href = '/home';  // Rediriger après connexion réussie
         } catch (error) {
-            // En cas d'erreur (mauvais identifiants, etc.), afficher un message d'erreur
-            console.error("Erreur lors de la connexion:", error.message);
-            alert("Erreur : " + error.message);  // Afficher l'erreur dans une alerte
+            console.error("❌ Erreur lors de la connexion:", error);
+            alert("Erreur : " + error.message);
         }
     });
-</script>
+ </script>
 </button>
-            </form>
-            <!-- Formulaire d'administration -->
-                <form id="signUpForm">
-                    <h2>Se connecter en administrateur</h2>
-                    <br><br><label for="email">Email:</label>
-                    <input type="text" id="email" name="email" placeholder="Entrer votre email" required>
-
-                    <br><br><label for="password">Mot de passe:</label>
-                    <input type="password" id="password" name="password" placeholder="Entrer votre mot de passe" required>
-
-                    <br><br><br><br><button type="submit">Se connecter en admin</button>
-                </form>
-            </div>
+        </form>
         </div>
     </div>
-
+</div>
     <script>
         const signInBtn = document.getElementById('signInBtn');
         const signUpBtn = document.getElementById('signUpBtn');
@@ -252,18 +228,15 @@
             loginForm.classList.remove('active');
         });
     </script>
-
- <script type="module">
-    import { createUser } from '{{ asset('firebase/firebase.js') }}';
+<script type="module">
+    import { logAsUser } from '{{ asset('firebase/firebase.js') }}';
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+        document.getElementById('signin-form').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const nom = document.getElementById('nom').value;
-            const prenom = document.getElementById('prenom').value;
             try {
-                await createUser(email, password, nom, prenom);
+                await logAsUser(email, password);
                 alert('User logged in successfully');
             } catch (error) {
                 console.error('Error logging in user:', error);
